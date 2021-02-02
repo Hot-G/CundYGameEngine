@@ -61,7 +61,6 @@ void CundYGameEngine::Init(char* title, int width, int height){
     glfwTerminate();
 }
 
-
 void CundYGameEngine::Render(){
     long size = actors.size();
     for(long i = 0;i < size;i++){
