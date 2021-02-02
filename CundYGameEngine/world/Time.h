@@ -8,17 +8,18 @@
 #ifndef Time_h
 #define Time_h
 
+#include <ctime>
+
 class Time{
 public:
-
-public:
-    static void Start(float sframe);
-    static void End(float eframe);
+    Time();
+    void Update();
     static float GetTime();
     static float GetDeltaTime();
 
 
 private:
+    float currentTime;
     static float lastFrameTime;
     static float deltaTime;
 };

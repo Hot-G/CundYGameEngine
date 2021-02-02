@@ -11,12 +11,14 @@ float Time::lastFrameTime = 0;
 float Time::deltaTime = 0;
 
 
-void Time::Start(float sframe) {
-    Time::lastFrameTime = sframe;
+Time::Time() {
+    lastFrameTime = (float)clock();
 }
 
-void Time::End(float eframe) {
-    Time::deltaTime = eframe - Time::lastFrameTime;
+void Time::Update() {
+    currentTime = (float)clock();
+    deltaTime = currentTime - lastFrameTime;
+    lastFrameTime = currentTime;
 }
 
 float Time::GetDeltaTime() {
@@ -26,3 +28,4 @@ float Time::GetDeltaTime() {
 float Time::GetTime() {
     return lastFrameTime;
 }
+
