@@ -31,6 +31,9 @@ void CundYGameEngine::Init(char* title, int width, int height){
     glfwMakeContextCurrent(window);
 //    Key Listener
     glfwSetKeyCallback(window, KeyListener);
+
+    /*-------------------- CREATE MANAGERS --------------------*/
+    timeManager = new Time();
     
 //    CALL START FUNCTION
     Start();
@@ -38,22 +41,15 @@ void CundYGameEngine::Init(char* title, int width, int height){
 //    RUN APPLICATION UNTIL CLOSED
     while (!glfwWindowShouldClose(window)) {
 
-        Time::Start(glfwGetTime());
-
         glClear(GL_COLOR_BUFFER_BIT);
 
-        if(currentTime - lastTime >= 1.0/fps)
-        {
-
-        }
+        timeManager->Update();
 
          Update();
          Render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-
-        Time::End(glfwGetTime());
 
         lastTime = currentTime;
     }
@@ -72,3 +68,10 @@ void CundYGameEngine::Render(){
         actors.at(i)->Draw();
     }
 }
+
+/*
+ *         if(currentTime - lastTime >= 1.0/fps)
+        {
+
+        }
+ */

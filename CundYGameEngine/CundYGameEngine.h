@@ -33,6 +33,7 @@ public:
 private:
     const int fps = 120;
     float currentTime, lastTime = 0;
+    Time* timeManager;
     
 };
 
