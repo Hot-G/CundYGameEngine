@@ -33,7 +33,7 @@ void CundYGameEngine::Init(char* title, int width, int height){
     glfwSetKeyCallback(window, KeyListener);
 
     /*-------------------- CREATE MANAGERS --------------------*/
-    timeManager = new Time();
+    timeManager = new Time((float)glfwGetTime());
     
 //    CALL START FUNCTION
     Start();
@@ -43,7 +43,7 @@ void CundYGameEngine::Init(char* title, int width, int height){
 
         glClear(GL_COLOR_BUFFER_BIT);
 
-        timeManager->Update();
+        timeManager->Update((float)glfwGetTime());
 
          Update();
          Render();
@@ -53,6 +53,8 @@ void CundYGameEngine::Init(char* title, int width, int height){
 
         lastTime = currentTime;
     }
+
+    delete timeManager;
     
     glfwTerminate();
 }

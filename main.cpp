@@ -14,7 +14,8 @@ class Player : public Actor{
     }
 
     void Update() override{
-        transform->rotation->x += 90 * Time::GetDeltaTime();
+        //cout << Time::GetDeltaTime << endl;
+        transform->rotation->x += 120 * Time::GetDeltaTime();
         //transform->location->x += 0.3 * Time::GetDeltaTime();
     }
 
@@ -41,7 +42,7 @@ class GameEngine : public CundYGameEngine{
         actors.push_back(player);
     }
 
-    void Update(){
+    void Update() override{
         //cout << "Burası Update" << endl;
     }
 };

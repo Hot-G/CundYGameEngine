@@ -7,22 +7,22 @@
 
 #include "Time.h"
 
-float Time::lastFrameTime = 0;
-float Time::deltaTime = 0;
+float Time::deltaTime;
+float Time::lastFrameTime;
 
-
-Time::Time() {
-    lastFrameTime = (float)clock();
+Time::Time(float time) {
+    lastFrameTime = time;
+    deltaTime = 0.0;
 }
 
-void Time::Update() {
-    currentTime = (float)clock();
+void Time::Update(float time) {
+    currentTime = time;
     deltaTime = currentTime - lastFrameTime;
     lastFrameTime = currentTime;
 }
 
 float Time::GetDeltaTime() {
-    return Time::deltaTime;
+    return deltaTime;
 }
 
 float Time::GetTime() {

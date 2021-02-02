@@ -8,12 +8,10 @@
 #ifndef Time_h
 #define Time_h
 
-#include <ctime>
-
 class Time{
 public:
-    Time();
-    void Update();
+    Time(float time);
+    void Update(float time);
     static float GetTime();
     static float GetDeltaTime();
 
