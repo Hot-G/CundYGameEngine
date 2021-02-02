@@ -12,7 +12,7 @@ GameObject::GameObject(){
 }
 
 void GameObject::Draw(){
-    Drawing::DrawMesh(meshSize, mesh, transform, Color(0.4, 0.6, 0.7));
+    Drawing::DrawMesh(meshSize, mesh, transform,new Color(0.4, 0.6, 0.7));
 }
 
 void GameObject::SetMesh(int size, Vector3d *mesh) {

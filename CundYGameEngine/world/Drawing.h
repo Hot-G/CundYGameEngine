@@ -14,9 +14,13 @@
 #include "../maths/Transform.h"
 #include "../maths/Color.h"
 
+#define RAD2DEG 0.01745329
+
 class Drawing{
 public:
-    static void DrawMesh(int size, Vector3d* mesh, Transform transform, Color color);
+
+public:
+    static void DrawMesh(int size, Vector3d* mesh, Transform* transform, Color* color);
 };
 
 #endif /* Drawing_hpp */

@@ -15,7 +15,7 @@ class Player : public Actor{
 
     void Update() override{
         transform->rotation->x += 90 * Time::GetDeltaTime();
-        transform->location->x += 0.3 * Time::GetDeltaTime();
+        //transform->location->x += 0.3 * Time::GetDeltaTime();
     }
 
     void KeyListener(int key, int action){
