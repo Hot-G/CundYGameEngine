@@ -14,8 +14,6 @@ static void KeyListener(GLFWwindow* window, int key, int scancode, int action, i
 
 void CundYGameEngine::Init(char* title, int width, int height){
     
-    GLFWwindow* window;
-    
     if(!glfwInit())
         return;
     
@@ -48,12 +46,14 @@ void CundYGameEngine::Init(char* title, int width, int height){
         Update();
         Render();
 
-        currentTime = (float)glfwGetTime();
+        currentTime = Time::GetTime();
 
         /*-------------------- CALCULATE FPS --------------------*/
         frameCount++;
         if(currentTime - lastTime >= 1.0)
         {
+            stringstream ss;
+            ss << "DENEME " << frameCount;
             glfwSetWindowTitle(window, ss.str().c_str());
             frameCount = 0;
             lastTime = currentTime;

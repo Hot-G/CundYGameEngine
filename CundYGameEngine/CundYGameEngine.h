@@ -32,10 +32,11 @@ public:
     void Init(char* title, int width, int height);
 
 private:
-    int frameCount;
-    stringstream ss;
-    float currentTime, lastTime = 0;
+    GLFWwindow* window;
     Time* timeManager;
+
+    int frameCount;
+    float currentTime, lastTime = 0;
     
 };
 
