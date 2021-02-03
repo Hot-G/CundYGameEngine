@@ -37,7 +37,7 @@ void CundYGameEngine::Init(char* title, int width, int height){
     
 //    CALL START FUNCTION
     Start();
-    
+    int frameCount = 0;
 //    RUN APPLICATION UNTIL CLOSED
     while (!glfwWindowShouldClose(window)) {
 
@@ -45,13 +45,22 @@ void CundYGameEngine::Init(char* title, int width, int height){
 
         timeManager->Update((float)glfwGetTime());
 
-         Update();
-         Render();
+        Update();
+        Render();
+
+        currentTime = (float)glfwGetTime();
+
+        /*-------------------- CALCULATE FPS --------------------*/
+        frameCount++;
+        if(currentTime - lastTime >= 1.0)
+        {
+            glfwSetWindowTitle(window, ss.str().c_str());
+            frameCount = 0;
+            lastTime = currentTime;
+        }
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-
-        lastTime = currentTime;
     }
 
     delete timeManager;
@@ -62,11 +71,7 @@ void CundYGameEngine::Init(char* title, int width, int height){
 void CundYGameEngine::Render(){
     long size = actors.size();
     for(long i = 0;i < size;i++){
-        Actor* actor = dynamic_cast<Actor*>(actors.at(i));
-        
-        if(actor != NULL)
-            actor->Update();
-        
+
         actors.at(i)->Draw();
     }
 }

@@ -11,7 +11,8 @@
 #include <glfw3.h>
 #include <iostream>
 #include <vector>
-#include "world/Actor.h"
+#include <sstream>
+#include "world/Gameobject.h"
 #include "world/Scene.h"
 #include "world/Time.h"
 
@@ -31,7 +32,8 @@ public:
     void Init(char* title, int width, int height);
 
 private:
-    const int fps = 120;
+    int frameCount;
+    stringstream ss;
     float currentTime, lastTime = 0;
     Time* timeManager;
     
