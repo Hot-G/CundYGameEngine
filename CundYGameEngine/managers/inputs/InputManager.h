@@ -8,12 +8,13 @@
 
 #include <glfw3.h>
 #include "../../maths/Vector2d.h"
+#include <unordered_map>
 
 class InputManager {
     enum KeyName {
         A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, // Keyboard Keys
         LeftShift, LeftCtrl, LeftAlt,
-        RightShift,  RightCtrl,  RightAlt,
+        RightShift, RightCtrl, RightAlt,
         Space, Enter,
         LeftMouseButton, RightMouseButton, MouseMiddle, MouseLast,
         MouseButton1, MouseButton2, MouseButton3, MouseButton4,
@@ -36,47 +37,82 @@ class InputManager {
         KPDecimal, KPDivide, KPMultiply, KPSubtract, KPAdd, KPEnter, KPEqual,
     };
 
+
+/*-------------------- Functions --------------------*/
 public:
+
+
     struct PressedKey {
 
-            public:
-            PressedKey();
-            PressedKey(const PressedKey& copyFrom);
-            PressedKey(GLFWwindow* pWindow, int keyCode);
+    public:
+        PressedKey();
 
-            void IsPressed();
-            void SetUpForRelease();
-            bool IsReleased();
-            public:
-            bool        actedOnThisFrame;
-            GLFWwindow*	window;
-            int         keyCode;
+        PressedKey(const PressedKey &copyFrom);
 
-            private:
+        PressedKey(GLFWwindow *pWindow, int keyCode);
 
-            int numberOfFramesActive;
+        void IsPressed();
 
+        void SetUpForRelease();
+
+        bool IsReleased();
+
+    public:
+        bool actedOnThisFrame;
+        GLFWwindow *window;
+        int keyCode;
+
+    private:
+
+        int numberOfFramesActive;
+
+
+    };
+
+    class Mouse {
+    public:
+
+        Mouse();
+
+        Mouse(GLFWwindow *window);
+
+        void Update();
+
+        void SetMouseVisible(bool b);
+
+        Vector2d GetMouseDelta() const;
+
+    public:
+        /// Screen space, from top left corner
+        Vector2d mousePos;
+        // ______________________________________________________________________________________________
+        // PRIVATE ======================================================================================
+    private:
+        Vector2d mouseDelta;
+        GLFWwindow *window;
 
     };
 
-    class  Mouse {
-            public:
+public:
+    InputManager(GLFWwindow *glWindow);
 
-            Mouse();
-            Mouse(GLFWwindow* window);
-            void    Update();
-            void    SetMouseVisible(bool b);
-            Vector2d GetMouseDelta() const;
-            public:
-            /// Screen space, from top left corner
-            Vector2d mousePos;
-            // ______________________________________________________________________________________________
-            // PRIVATE ======================================================================================
-            private:
-            Vector2d mouseDelta;
-            GLFWwindow* window;
+    ~InputManager();
 
-    };
+    void Update(float deltaTime);
+
+#pragma GCC diagnostic ignored "-Wunused-parameter" // Ignore warnings regarding unused parameters
+public:
+
+    static std::unordered_map<KeyName, int> keyMaping;
+    static std::unordered_map<int, PressedKey> PressedKeys;
+    static std::unordered_map<int, PressedKey> ReleasedKeys;
+
+    static Mouse mouse;
+
+#pragma GCC diagnostic ignored "-Wunused-parameter" // Ignore warnings regarding unused parameters
+private:
+    GLFWwindow *p_window;
+
 };
 
 
